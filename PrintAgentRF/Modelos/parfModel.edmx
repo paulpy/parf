@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="parestfModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\pjourdan\Documents\Visual Studio 2015\Projects\PrintAgentRF\PrintAgentRF\bin\Debug\db\parestf.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="configuracion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreagente" Type="varchar" MaxLength="100" />
+          <Property Name="contrasenarf" Type="varchar" MaxLength="50" />
+          <Property Name="ipequipo" Type="varchar" MaxLength="50" />
+          <Property Name="puerto" Type="integer" />
+          <Property Name="hostps" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="estados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="impresion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="json" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="tipoplantilla" Type="integer" />
+          <Property Name="estado" Type="integer" />
+        </EntityType>
+        <EntityType Name="impresoras">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreenequipo" Type="varchar" MaxLength="100" />
+          <Property Name="serial" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="integer" />
+        </EntityType>
+        <EntityType Name="plantilla">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="json" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="ultimaimportacion" Type="datetime" />
+          <Property Name="plantilla" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="trabajosterminados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="impresora" Type="integer" />
+          <Property Name="cedula" Type="integer" />
+          <Property Name="fechahora" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_impresion_0_0">
+          <End Role="estados" Type="Self.estados" Multiplicity="0..1" />
+          <End Role="impresion" Type="Self.impresion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="impresion">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_impresion_1_0">
+          <End Role="plantilla" Type="Self.plantilla" Multiplicity="0..1" />
+          <End Role="impresion" Type="Self.impresion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plantilla">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="impresion">
+              <PropertyRef Name="tipoplantilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_impresoras_0_0">
+          <End Role="estados" Type="Self.estados" Multiplicity="0..1" />
+          <End Role="impresoras" Type="Self.impresoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="impresoras">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trabajosterminados_0_0">
+          <End Role="impresoras" Type="Self.impresoras" Multiplicity="0..1" />
+          <End Role="trabajosterminados" Type="Self.trabajosterminados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="impresoras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trabajosterminados">
+              <PropertyRef Name="impresora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="parestfModelStoreContainer">
+          <EntitySet Name="configuracion" EntityType="Self.configuracion" store:Type="Tables" />
+          <EntitySet Name="estados" EntityType="Self.estados" store:Type="Tables" />
+          <EntitySet Name="impresion" EntityType="Self.impresion" store:Type="Tables" />
+          <EntitySet Name="impresoras" EntityType="Self.impresoras" store:Type="Tables" />
+          <EntitySet Name="plantilla" EntityType="Self.plantilla" store:Type="Tables" />
+          <EntitySet Name="trabajosterminados" EntityType="Self.trabajosterminados" store:Type="Tables" />
+          <AssociationSet Name="FK_impresion_0_0" Association="Self.FK_impresion_0_0">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="impresion" EntitySet="impresion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_impresion_1_0" Association="Self.FK_impresion_1_0">
+            <End Role="plantilla" EntitySet="plantilla" />
+            <End Role="impresion" EntitySet="impresion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_impresoras_0_0" Association="Self.FK_impresoras_0_0">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="impresoras" EntitySet="impresoras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trabajosterminados_0_0" Association="Self.FK_trabajosterminados_0_0">
+            <End Role="impresoras" EntitySet="impresoras" />
+            <End Role="trabajosterminados" EntitySet="trabajosterminados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="parestfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="configuracion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreagente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenarf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ipequipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="puerto" Type="Int64" />
+          <Property Name="hostps" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="estados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="impresion" Relationship="Self.FK_impresion_0_0" FromRole="estados" ToRole="impresion" />
+          <NavigationProperty Name="impresoras" Relationship="Self.FK_impresoras_0_0" FromRole="estados" ToRole="impresoras" />
+        </EntityType>
+        <EntityType Name="impresion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="json" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="tipoplantilla" Type="Int64" />
+          <Property Name="estado" Type="Int64" />
+          <NavigationProperty Name="estados" Relationship="Self.FK_impresion_0_0" FromRole="impresion" ToRole="estados" />
+          <NavigationProperty Name="plantilla" Relationship="Self.FK_impresion_1_0" FromRole="impresion" ToRole="plantilla" />
+        </EntityType>
+        <EntityType Name="impresoras">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreenequipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="serial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int64" />
+          <NavigationProperty Name="estados" Relationship="Self.FK_impresoras_0_0" FromRole="impresoras" ToRole="estados" />
+          <NavigationProperty Name="trabajosterminados" Relationship="Self.FK_trabajosterminados_0_0" FromRole="impresoras" ToRole="trabajosterminados" />
+        </EntityType>
+        <EntityType Name="plantilla">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="json" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="ultimaimportacion" Type="DateTime" />
+          <Property Name="plantilla1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="impresion" Relationship="Self.FK_impresion_1_0" FromRole="plantilla" ToRole="impresion" />
+        </EntityType>
+        <EntityType Name="trabajosterminados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="impresora" Type="Int64" />
+          <Property Name="cedula" Type="Int64" />
+          <Property Name="fechahora" Type="DateTime" />
+          <NavigationProperty Name="impresoras" Relationship="Self.FK_trabajosterminados_0_0" FromRole="trabajosterminados" ToRole="impresoras" />
+        </EntityType>
+        <Association Name="FK_impresion_0_0">
+          <End Role="estados" Type="Self.estados" Multiplicity="0..1" />
+          <End Role="impresion" Type="Self.impresion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="impresion">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_impresoras_0_0">
+          <End Role="estados" Type="Self.estados" Multiplicity="0..1" />
+          <End Role="impresoras" Type="Self.impresoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="impresoras">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_impresion_1_0">
+          <End Role="plantilla" Type="Self.plantilla" Multiplicity="0..1" />
+          <End Role="impresion" Type="Self.impresion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plantilla">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="impresion">
+              <PropertyRef Name="tipoplantilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trabajosterminados_0_0">
+          <End Role="impresoras" Type="Self.impresoras" Multiplicity="0..1" />
+          <End Role="trabajosterminados" Type="Self.trabajosterminados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="impresoras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trabajosterminados">
+              <PropertyRef Name="impresora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="parestfEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="configuracion" EntityType="Self.configuracion" />
+          <EntitySet Name="estados" EntityType="Self.estados" />
+          <EntitySet Name="impresion" EntityType="Self.impresion" />
+          <EntitySet Name="impresoras" EntityType="Self.impresoras" />
+          <EntitySet Name="plantilla" EntityType="Self.plantilla" />
+          <EntitySet Name="trabajosterminados" EntityType="Self.trabajosterminados" />
+          <AssociationSet Name="FK_impresion_0_0" Association="Self.FK_impresion_0_0">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="impresion" EntitySet="impresion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_impresoras_0_0" Association="Self.FK_impresoras_0_0">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="impresoras" EntitySet="impresoras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_impresion_1_0" Association="Self.FK_impresion_1_0">
+            <End Role="plantilla" EntitySet="plantilla" />
+            <End Role="impresion" EntitySet="impresion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trabajosterminados_0_0" Association="Self.FK_trabajosterminados_0_0">
+            <End Role="impresoras" EntitySet="impresoras" />
+            <End Role="trabajosterminados" EntitySet="trabajosterminados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="parestfModelStoreContainer" CdmEntityContainer="parestfEntities">
+          <EntitySetMapping Name="configuracion">
+            <EntityTypeMapping TypeName="parestfModel.configuracion">
+              <MappingFragment StoreEntitySet="configuracion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombreagente" ColumnName="nombreagente" />
+                <ScalarProperty Name="contrasenarf" ColumnName="contrasenarf" />
+                <ScalarProperty Name="ipequipo" ColumnName="ipequipo" />
+                <ScalarProperty Name="puerto" ColumnName="puerto" />
+                <ScalarProperty Name="hostps" ColumnName="hostps" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estados">
+            <EntityTypeMapping TypeName="parestfModel.estados">
+              <MappingFragment StoreEntitySet="estados">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="impresion">
+            <EntityTypeMapping TypeName="parestfModel.impresion">
+              <MappingFragment StoreEntitySet="impresion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="json" ColumnName="json" />
+                <ScalarProperty Name="tipoplantilla" ColumnName="tipoplantilla" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="impresoras">
+            <EntityTypeMapping TypeName="parestfModel.impresoras">
+              <MappingFragment StoreEntitySet="impresoras">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombreenequipo" ColumnName="nombreenequipo" />
+                <ScalarProperty Name="serial" ColumnName="serial" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="plantilla">
+            <EntityTypeMapping TypeName="parestfModel.plantilla">
+              <MappingFragment StoreEntitySet="plantilla">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="json" ColumnName="json" />
+                <ScalarProperty Name="ultimaimportacion" ColumnName="ultimaimportacion" />
+                <ScalarProperty Name="plantilla1" ColumnName="plantilla" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trabajosterminados">
+            <EntityTypeMapping TypeName="parestfModel.trabajosterminados">
+              <MappingFragment StoreEntitySet="trabajosterminados">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="impresora" ColumnName="impresora" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="fechahora" ColumnName="fechahora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
