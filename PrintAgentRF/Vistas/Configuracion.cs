@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PrintAgentRF
+namespace PrintAgentRF.Vistas
 {
-    public partial class PrintAgenPrincipal : Form
+    public partial class Configuracion : Form
     {
-        public PrintAgenPrincipal()
+        public Configuracion()
         {
             InitializeComponent();
         }

@@ -108,15 +108,24 @@
     <Compile Include="Modelos\trabajosterminados.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="PrintAgenPrincipal.cs">
+    <Compile Include="Vistas\Configuracion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PrintAgenPrincipal.Designer.cs">
+    <Compile Include="Vistas\Configuracion.Designer.cs">
+      <DependentUpon>Configuracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\PrintAgenPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\PrintAgenPrincipal.Designer.cs">
       <DependentUpon>PrintAgenPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="PrintAgenPrincipal.resx">
+    <EmbeddedResource Include="Vistas\Configuracion.resx">
+      <DependentUpon>Configuracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\PrintAgenPrincipal.resx">
       <DependentUpon>PrintAgenPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
