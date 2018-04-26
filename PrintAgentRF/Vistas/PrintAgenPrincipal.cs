@@ -30,5 +30,14 @@ namespace PrintAgentRF
                 Application.Exit();
             }
         }
+
+        private void pmiConfiguracion_Click(object sender, EventArgs e)
+        {
+            logger.Debug("El usuario Acciona para ir a las configuraciones");
+            logger.Info("El usuario Acciona para ir a las configuraciones");
+            logger.Warn("Un usuario va a las configuraciones del Sistema");
+            Vistas.Configuracion formConfig = new Vistas.Configuracion();
+            formConfig.Show();
+        }
     }
 }

@@ -32,8 +32,8 @@
             this.pmProcesos = new System.Windows.Forms.ToolStripMenuItem();
             this.pmiConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.pmiDSistema = new System.Windows.Forms.ToolStripMenuItem();
-            this.pmiCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.pmiCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.msPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,7 @@
             this.pmiConfiguracion.Name = "pmiConfiguracion";
             this.pmiConfiguracion.Size = new System.Drawing.Size(204, 26);
             this.pmiConfiguracion.Text = "Configuracion";
+            this.pmiConfiguracion.Click += new System.EventHandler(this.pmiConfiguracion_Click);
             // 
             // pmiDSistema
             // 
@@ -72,17 +73,17 @@
             this.pmiDSistema.Size = new System.Drawing.Size(204, 26);
             this.pmiDSistema.Text = "Datos del Sistema";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(201, 6);
+            // 
             // pmiCerrar
             // 
             this.pmiCerrar.Name = "pmiCerrar";
             this.pmiCerrar.Size = new System.Drawing.Size(204, 26);
             this.pmiCerrar.Text = "Cerrar";
             this.pmiCerrar.Click += new System.EventHandler(this.pmiCerrar_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(201, 6);
             // 
             // PrintAgenPrincipal
             // 

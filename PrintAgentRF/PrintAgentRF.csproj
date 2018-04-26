@@ -75,6 +75,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Controller\conexionbd.cs" />
+    <Compile Include="Clases\Controller\impresora.cs" />
+    <Compile Include="Clases\Controller\OperacionesConfiguracion.cs" />
     <Compile Include="Modelos\configuracion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -160,9 +163,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Clases\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Modelos\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
