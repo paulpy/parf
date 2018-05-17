@@ -18,7 +18,7 @@ namespace PrintAgentRF.Modelos
         public string nombreagente { get; set; }
         public string contrasenarf { get; set; }
         public string ipequipo { get; set; }
-        public Nullable<long> puerto { get; set; }
+        public Nullable<Int64> puerto { get; set; }
         public string hostps { get; set; }
     }
 }

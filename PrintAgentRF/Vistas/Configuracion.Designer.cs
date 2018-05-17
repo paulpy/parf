@@ -96,6 +96,7 @@
             // 
             // txbConfIpAgente
             // 
+            this.txbConfIpAgente.Enabled = false;
             this.txbConfIpAgente.Location = new System.Drawing.Point(255, 128);
             this.txbConfIpAgente.Name = "txbConfIpAgente";
             this.txbConfIpAgente.Size = new System.Drawing.Size(185, 22);
@@ -131,6 +132,7 @@
             this.btnConfActualizar.TabIndex = 10;
             this.btnConfActualizar.Text = "Actualizar";
             this.btnConfActualizar.UseVisualStyleBackColor = true;
+            this.btnConfActualizar.Click += new System.EventHandler(this.btnConfActualizar_Click);
             // 
             // btnConfCancelar
             // 
@@ -161,6 +163,7 @@
             this.Controls.Add(this.lblConfNomAgente);
             this.Name = "Configuracion";
             this.Text = "Configurarciones";
+            this.Load += new System.EventHandler(this.Configuracion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

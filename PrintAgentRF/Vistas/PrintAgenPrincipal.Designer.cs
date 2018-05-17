@@ -93,6 +93,7 @@
             this.Controls.Add(this.msPrincipal);
             this.Name = "PrintAgenPrincipal";
             this.Text = "Principal";
+            this.Load += new System.EventHandler(this.PrintAgenPrincipal_Load);
             this.msPrincipal.ResumeLayout(false);
             this.msPrincipal.PerformLayout();
             this.ResumeLayout(false);
