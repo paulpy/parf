@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.NetworkInformation;
+using PrintAgentRF.Clases.Controller;
 
 namespace PrintAgentRF
 {
@@ -18,6 +19,8 @@ namespace PrintAgentRF
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         /*Implementacion de un objeto entidad en la clase configuracion form*/
         private Modelos.parestfEntities parestfContext;
+        /*Implementacion de clase impresora para el uso de metodos*/
+        private impresora printMet = new impresora();
         public PrintAgenPrincipal()
         {
             InitializeComponent();
@@ -26,7 +29,7 @@ namespace PrintAgentRF
         private void pmiCerrar_Click(object sender, EventArgs e)
         {
             logger.Warn("Intentando Cerrar el Agente de Impresion por usuario");
-            if (MessageBox.Show("Seguro que desea Salir","Salir",MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show("Seguro que desea Salir", "Salir", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 logger.Info("Cerrando Sistema");
                 logger.Debug("Cerrando Sistema");
@@ -60,8 +63,8 @@ namespace PrintAgentRF
                     localIP = ip.ToString();
                 }
             }
-            var configUpdate = parestfContext.configuracion.Where(configactual => configactual.id.Equals(1));
-            foreach (var newconf in configUpdate)
+            var configUp = parestfContext.configuracion.Where(confCurrent => confCurrent.id.Equals(1));
+            foreach (var newconf in configUp)
             {
                 newconf.ipequipo = newconf.ipequipo.Replace(newconf.ipequipo, localIP);
                 try
@@ -77,6 +80,32 @@ namespace PrintAgentRF
                     logger.Error("Excepcion en try-catch de PrintAgentPrincipal_load " + ex.Message);
                 }
             }
+        }
+
+        private void verificarImrpesorasInstaladasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logger.Debug("El usuario Acciona para verificar y actualizar las Impresoras");
+            logger.Info("El usuario Acciona para verificar y actualizar las Impresoras");
+            logger.Warn("Un usuario verificara y actualizar las Impresoras");
+            var message = String.Join(Environment.NewLine, printMet.printersAdd(printMet.printerSuffix()));
+            if (message != "")
+            {
+                MessageBox.Show(message);
+            }
+            else
+            {
+                MessageBox.Show("No hay nuevas Impresoras");
+            }
+            
+        }
+
+        private void estadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logger.Debug("El usuario Acciona para ir a Estados");
+            logger.Info("El usuario Acciona para ir a Estados");
+            logger.Warn("Un usuario va a los Estados del Sistema");
+            Vistas.Estados stateInBd = new Vistas.Estados();
+            stateInBd.Show();
         }
     }
 }

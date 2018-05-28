@@ -55,6 +55,7 @@ namespace PrintAgentRF.Vistas
                     txbConfIpAgente.Text = config.ipequipo;
                     txbConfPuerto.Text = Convert.ToString(config.puerto);
                     txbConfHost.Text = config.hostps;
+                    txbRefPrint.Text = config.ref_print;
                 }
             }
             catch (Exception ex)
@@ -86,6 +87,7 @@ namespace PrintAgentRF.Vistas
                     newconf.contrasenarf = newconf.contrasenarf.Replace(newconf.contrasenarf, txbConfContrasena.Text);
                     newconf.hostps = newconf.hostps.Replace(newconf.hostps, txbConfHost.Text);
                     newconf.puerto = Convert.ToInt64(txbConfPuerto.Text);
+                    newconf.ref_print = newconf.ref_print.Replace(newconf.ref_print, txbRefPrint.Text);
                     try
                     {
                         parestfContext.SaveChanges();

@@ -40,6 +40,8 @@
             this.txbConfContrasena = new System.Windows.Forms.TextBox();
             this.btnConfActualizar = new System.Windows.Forms.Button();
             this.btnConfCancelar = new System.Windows.Forms.Button();
+            this.txbRefPrint = new System.Windows.Forms.TextBox();
+            this.lblRefPrint = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblConfNomAgente
@@ -54,7 +56,7 @@
             // lblConfPassAgente
             // 
             this.lblConfPassAgente.AutoSize = true;
-            this.lblConfPassAgente.Location = new System.Drawing.Point(62, 86);
+            this.lblConfPassAgente.Location = new System.Drawing.Point(62, 211);
             this.lblConfPassAgente.Name = "lblConfPassAgente";
             this.lblConfPassAgente.Size = new System.Drawing.Size(156, 17);
             this.lblConfPassAgente.TabIndex = 1;
@@ -63,7 +65,7 @@
             // lblConfIpEquipo
             // 
             this.lblConfIpEquipo.AutoSize = true;
-            this.lblConfIpEquipo.Location = new System.Drawing.Point(62, 133);
+            this.lblConfIpEquipo.Location = new System.Drawing.Point(62, 89);
             this.lblConfIpEquipo.Name = "lblConfIpEquipo";
             this.lblConfIpEquipo.Size = new System.Drawing.Size(94, 17);
             this.lblConfIpEquipo.TabIndex = 2;
@@ -72,7 +74,7 @@
             // lvlConfPuerto
             // 
             this.lvlConfPuerto.AutoSize = true;
-            this.lvlConfPuerto.Location = new System.Drawing.Point(62, 176);
+            this.lvlConfPuerto.Location = new System.Drawing.Point(62, 132);
             this.lvlConfPuerto.Name = "lvlConfPuerto";
             this.lvlConfPuerto.Size = new System.Drawing.Size(54, 17);
             this.lvlConfPuerto.TabIndex = 3;
@@ -81,7 +83,7 @@
             // lvlConfHost
             // 
             this.lvlConfHost.AutoSize = true;
-            this.lvlConfHost.Location = new System.Drawing.Point(62, 214);
+            this.lvlConfHost.Location = new System.Drawing.Point(62, 170);
             this.lvlConfHost.Name = "lvlConfHost";
             this.lvlConfHost.Size = new System.Drawing.Size(113, 17);
             this.lvlConfHost.TabIndex = 4;
@@ -97,28 +99,28 @@
             // txbConfIpAgente
             // 
             this.txbConfIpAgente.Enabled = false;
-            this.txbConfIpAgente.Location = new System.Drawing.Point(255, 128);
+            this.txbConfIpAgente.Location = new System.Drawing.Point(255, 84);
             this.txbConfIpAgente.Name = "txbConfIpAgente";
             this.txbConfIpAgente.Size = new System.Drawing.Size(185, 22);
             this.txbConfIpAgente.TabIndex = 6;
             // 
             // txbConfPuerto
             // 
-            this.txbConfPuerto.Location = new System.Drawing.Point(255, 170);
+            this.txbConfPuerto.Location = new System.Drawing.Point(255, 126);
             this.txbConfPuerto.Name = "txbConfPuerto";
             this.txbConfPuerto.Size = new System.Drawing.Size(185, 22);
             this.txbConfPuerto.TabIndex = 7;
             // 
             // txbConfHost
             // 
-            this.txbConfHost.Location = new System.Drawing.Point(255, 211);
+            this.txbConfHost.Location = new System.Drawing.Point(255, 167);
             this.txbConfHost.Name = "txbConfHost";
             this.txbConfHost.Size = new System.Drawing.Size(185, 22);
             this.txbConfHost.TabIndex = 8;
             // 
             // txbConfContrasena
             // 
-            this.txbConfContrasena.Location = new System.Drawing.Point(255, 86);
+            this.txbConfContrasena.Location = new System.Drawing.Point(255, 211);
             this.txbConfContrasena.Name = "txbConfContrasena";
             this.txbConfContrasena.Size = new System.Drawing.Size(185, 22);
             this.txbConfContrasena.TabIndex = 9;
@@ -126,7 +128,7 @@
             // 
             // btnConfActualizar
             // 
-            this.btnConfActualizar.Location = new System.Drawing.Point(142, 263);
+            this.btnConfActualizar.Location = new System.Drawing.Point(134, 306);
             this.btnConfActualizar.Name = "btnConfActualizar";
             this.btnConfActualizar.Size = new System.Drawing.Size(84, 23);
             this.btnConfActualizar.TabIndex = 10;
@@ -136,7 +138,7 @@
             // 
             // btnConfCancelar
             // 
-            this.btnConfCancelar.Location = new System.Drawing.Point(255, 263);
+            this.btnConfCancelar.Location = new System.Drawing.Point(255, 306);
             this.btnConfCancelar.Name = "btnConfCancelar";
             this.btnConfCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnConfCancelar.TabIndex = 11;
@@ -144,11 +146,29 @@
             this.btnConfCancelar.UseVisualStyleBackColor = true;
             this.btnConfCancelar.Click += new System.EventHandler(this.btnConfCancelar_Click);
             // 
+            // txbRefPrint
+            // 
+            this.txbRefPrint.Location = new System.Drawing.Point(255, 255);
+            this.txbRefPrint.Name = "txbRefPrint";
+            this.txbRefPrint.Size = new System.Drawing.Size(185, 22);
+            this.txbRefPrint.TabIndex = 12;
+            // 
+            // lblRefPrint
+            // 
+            this.lblRefPrint.AutoSize = true;
+            this.lblRefPrint.Location = new System.Drawing.Point(65, 255);
+            this.lblRefPrint.Name = "lblRefPrint";
+            this.lblRefPrint.Size = new System.Drawing.Size(148, 17);
+            this.lblRefPrint.TabIndex = 13;
+            this.lblRefPrint.Text = "Referencia Impresora:";
+            // 
             // Configuracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 298);
+            this.ClientSize = new System.Drawing.Size(519, 381);
+            this.Controls.Add(this.lblRefPrint);
+            this.Controls.Add(this.txbRefPrint);
             this.Controls.Add(this.btnConfCancelar);
             this.Controls.Add(this.btnConfActualizar);
             this.Controls.Add(this.txbConfContrasena);
@@ -183,5 +203,7 @@
         private System.Windows.Forms.TextBox txbConfContrasena;
         private System.Windows.Forms.Button btnConfActualizar;
         private System.Windows.Forms.Button btnConfCancelar;
+        private System.Windows.Forms.TextBox txbRefPrint;
+        private System.Windows.Forms.Label lblRefPrint;
     }
 }

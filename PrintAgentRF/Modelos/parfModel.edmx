@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="parestfModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\pjourdan\Documents\Visual Studio 2015\Projects\PrintAgentRF\PrintAgentRF\bin\Debug\db\parestf.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="parestfModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\pjourdan\Documents\Visual Studio 2015\Projects\PrintAgentRF\PrintAgentRF\bin\Debug\db\parestf.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="configuracion">
           <Key>
             <PropertyRef Name="id" />
@@ -15,6 +15,7 @@
           <Property Name="ipequipo" Type="varchar" MaxLength="50" />
           <Property Name="puerto" Type="integer" />
           <Property Name="hostps" Type="varchar" MaxLength="200" />
+          <Property Name="ref_print" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="estados">
           <Key>
@@ -131,8 +132,7 @@
             <End Role="trabajosterminados" EntitySet="trabajosterminados" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="parestfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -146,6 +146,7 @@
           <Property Name="ipequipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="puerto" Type="Int64" />
           <Property Name="hostps" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ref_print" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="estados">
           <Key>
@@ -279,6 +280,7 @@
           <EntitySetMapping Name="configuracion">
             <EntityTypeMapping TypeName="parestfModel.configuracion">
               <MappingFragment StoreEntitySet="configuracion">
+                <ScalarProperty Name="ref_print" ColumnName="ref_print" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombreagente" ColumnName="nombreagente" />
                 <ScalarProperty Name="contrasenarf" ColumnName="contrasenarf" />
@@ -351,7 +353,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>

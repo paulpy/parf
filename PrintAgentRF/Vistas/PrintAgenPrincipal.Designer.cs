@@ -32,6 +32,8 @@
             this.pmProcesos = new System.Windows.Forms.ToolStripMenuItem();
             this.pmiConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.pmiDSistema = new System.Windows.Forms.ToolStripMenuItem();
+            this.verificarImrpesorasInstaladasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.pmiCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.msPrincipal.SuspendLayout();
@@ -69,9 +71,26 @@
             // 
             // pmiDSistema
             // 
+            this.pmiDSistema.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verificarImrpesorasInstaladasToolStripMenuItem,
+            this.estadosToolStripMenuItem});
             this.pmiDSistema.Name = "pmiDSistema";
             this.pmiDSistema.Size = new System.Drawing.Size(204, 26);
             this.pmiDSistema.Text = "Datos del Sistema";
+            // 
+            // verificarImrpesorasInstaladasToolStripMenuItem
+            // 
+            this.verificarImrpesorasInstaladasToolStripMenuItem.Name = "verificarImrpesorasInstaladasToolStripMenuItem";
+            this.verificarImrpesorasInstaladasToolStripMenuItem.Size = new System.Drawing.Size(285, 26);
+            this.verificarImrpesorasInstaladasToolStripMenuItem.Text = "Verificar Imrpesoras Instaladas";
+            this.verificarImrpesorasInstaladasToolStripMenuItem.Click += new System.EventHandler(this.verificarImrpesorasInstaladasToolStripMenuItem_Click);
+            // 
+            // estadosToolStripMenuItem
+            // 
+            this.estadosToolStripMenuItem.Name = "estadosToolStripMenuItem";
+            this.estadosToolStripMenuItem.Size = new System.Drawing.Size(285, 26);
+            this.estadosToolStripMenuItem.Text = "Estados";
+            this.estadosToolStripMenuItem.Click += new System.EventHandler(this.estadosToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -109,6 +128,8 @@
         private System.Windows.Forms.ToolStripMenuItem pmiDSistema;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem pmiCerrar;
+        private System.Windows.Forms.ToolStripMenuItem verificarImrpesorasInstaladasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem estadosToolStripMenuItem;
     }
 }
 

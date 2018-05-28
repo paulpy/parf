@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,9 +46,24 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fargo.PrinterSDK">
+      <HintPath>..\libs\Fargo.PrinterSDK.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\libs\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PDF417EncodeNET">
+      <HintPath>..\libs\PDF417EncodeNET.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCodeEncodeNET">
+      <HintPath>..\libs\QRCodeEncodeNET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -62,6 +80,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -111,11 +130,22 @@
     <Compile Include="Modelos\trabajosterminados.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="parestfDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>parestfDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Configuracion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vistas\Configuracion.Designer.cs">
       <DependentUpon>Configuracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Estados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Estados.Designer.cs">
+      <DependentUpon>Estados.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\PrintAgenPrincipal.cs">
       <SubType>Form</SubType>
@@ -127,6 +157,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Vistas\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Estados.resx">
+      <DependentUpon>Estados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\PrintAgenPrincipal.resx">
       <DependentUpon>PrintAgenPrincipal.cs</DependentUpon>
@@ -148,6 +181,18 @@
       <DependentUpon>parfModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="parestfDataSet.xsc">
+      <DependentUpon>parestfDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="parestfDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>parestfDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="parestfDataSet.xss">
+      <DependentUpon>parestfDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\DataSources\PrintAgentRF.Modelos.estados.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -187,6 +232,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets'))" />
   </Target>
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' == ''" />
+  <PropertyGroup>
+    <SsdtUnitTestVersion>2.0</SsdtUnitTestVersion>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
